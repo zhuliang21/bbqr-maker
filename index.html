@@ -60,15 +60,20 @@
       top: 8px;
       left: 50%;
       transform: translateX(-50%);
-      color: #ffa600;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 25%, #FFD700 50%, #B8860B 75%, #FFD700 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #FFD700;
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      text-shadow: 0 0 5px #ffa600;
-      background: #2a2a2a;
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.6), 0 0 15px rgba(255, 215, 0, 0.3);
+      background-color: #2a2a2a;
       padding: 0 10px;
       z-index: 10;
+      filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.5));
     }
     
     .screen {

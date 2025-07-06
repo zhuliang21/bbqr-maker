@@ -1,4 +1,4 @@
-# BBQr Maker
+# <img src="icon/icon-192.png" alt="BBQr Maker" width="32" height="32"> BBQr Maker
 
 > Minimal single-page tool to **convert a PSBT into multi-frame BBQr QR codes** for offline signing.
 
