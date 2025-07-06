@@ -1,61 +1,47 @@
-# BBQr Helper
+# BBQr Maker
 
-Complete PSBT to ColdCard to Broadcast workflow with BBQr codes.
+> Minimal single-page tool to **convert a PSBT into multi-frame BBQr QR codes** for offline signing.
 
 ## Features
 
-- **Import PSBT**: Load your Partially Signed Bitcoin Transaction
-- **Generate BBQr**: Create animated QR codes for ColdCard import
-- **Import Signed**: Scan signed transaction from ColdCard
-- **Finalize**: Complete the transaction finalization
-- **Broadcast**: Send to Bitcoin network
+* Paste or drop a Base64-encoded PSBT
+* One click → split to BBQr parts (multi-frame QR)
+* Auto-plays the frames in a loop for easy scanning
 
-## Getting Started
+No PSBT analysis, no broadcasting – just make the QR.
 
-### Prerequisites
-
-- Node.js (v14 or higher)
-- Modern web browser with camera support
-
-### Installation
+## Quick start
 
 ```bash
-npm install
+git clone …/bbqr-maker.git
+cd bbqr-maker
+npm install     # installs only bbqr + qrious + dev tools
+npm run build   # generates dist/bbqr-maker.bundle.js
+npx http-server # or any static server, then open http://localhost:8080
 ```
 
-### Development
+You can also open `index.html` directly from disk – everything is bundled.
 
-```bash
-npm run build
-npm run serve
+## Development scripts
+
+| command | purpose |
+|---------|---------|
+| `npm run build` | build once with webpack |
+| `npm run dev`   | watch & rebuild on changes |
+| `npm run serve` | simple HTTP server for local testing |
+
+## Project structure
+
+```
+src/
+  bbqr-maker.js   # main logic
+index.html        # UI (very small)
+webpack.config.js # build config
 ```
 
-For HTTPS (required for camera access):
-```bash
-npm run serve-https
-```
+## Why keep package-lock.json?
 
-### Build
-
-```bash
-npm run build
-```
-
-## Usage
-
-1. Open the application in your browser
-2. Follow the 5-step workflow:
-   - Step 1: Import your PSBT
-   - Step 2: Generate BBQr codes for ColdCard
-   - Step 3: Import the signed transaction
-   - Step 4: Finalize the transaction
-   - Step 5: Broadcast to the network
-
-## Security Notes
-
-- This is a pure frontend application - no data is sent to servers
-- All cryptographic operations happen locally in your browser
-- Use at your own risk - this is educational/experimental software
+It locks exact dependency versions to make builds reproducible. Delete it only if you don't care about that guarantee.
 
 ## License
 

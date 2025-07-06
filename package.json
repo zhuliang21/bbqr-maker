@@ -1,7 +1,7 @@
 {
-  "name": "bbqr-helper",
+  "name": "bbqr-maker",
   "version": "1.0.0",
-  "description": "Complete PSBT to ColdCard to Broadcast workflow with BBQr codes",
+  "description": "Minimal tool to convert a PSBT into multi-frame BBQr codes for offline signing.",
   "main": "index.html",
   "scripts": {
     "test": "npm run build",
@@ -9,22 +9,12 @@
     "serve": "npx http-server -p 8080 -c-1",
     "dev": "npx webpack --watch"
   },
-  "keywords": ["bitcoin", "bbqr", "coldcard", "psbt", "hardware-wallet"],
+  "keywords": ["bbqr", "psbt", "qr", "bitcoin", "offline", "maker"],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bitcoinerlab/secp256k1": "^1.2.0",
-    "@scure/btc-signer": "^1.8.1",
     "bbqr": "^1.2.0",
-    "bech32": "^2.0.0",
-    "bip32": "^2.0.6",
-    "bip39": "^3.1.0",
-    "bitcoinjs-lib": "^6.1.7",
-    "bs58check": "^4.0.0",
-    "qrcode": "^1.5.4",
-    "qrious": "^4.0.2",
-    "tiny-secp256k1": "^1.1.0",
-    "tslib": "^2.8.1"
+    "qrious": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",

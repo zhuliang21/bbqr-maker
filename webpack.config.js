@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    'bbqr-helper': './src/bbqr-helper.js'
+    'bbqr-maker': './src/bbqr-maker.js'
   },
   output: {
     filename: '[name].bundle.js',
