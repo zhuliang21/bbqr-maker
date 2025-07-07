@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     'bbqr-maker': './src/bbqr-maker.js'
   },
@@ -54,6 +54,7 @@ module.exports = {
   experiments: {
     topLevelAwait: true
   },
+  devtool: 'source-map',
   plugins: [
     new webpack.ProvidePlugin({
       Buffer: ['buffer', 'Buffer'],
