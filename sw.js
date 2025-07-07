@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bbqr-maker-v3';
+const CACHE_NAME = 'bbqr-maker-v4-21baiwan';
 const urlsToCache = [
   './',
   './index.html',

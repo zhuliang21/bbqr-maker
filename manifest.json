@@ -32,9 +32,9 @@
   ],
   "screenshots": [
     {
-      "src": "icon/icon-512.png",
+      "src": "https://bbqr-maker.21baiwan.com/icon/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/png", 
       "form_factor": "wide",
       "label": "BBQr Maker main interface showing PSBT input and animated QR output"
     }
