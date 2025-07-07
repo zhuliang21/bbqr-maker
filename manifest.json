@@ -22,7 +22,7 @@
     }
   ],
   "categories": ["utilities", "finance", "productivity"],
-  "lang": "en", 
+  "lang": "en",
   "scope": "./",
   "prefer_related_applications": false,
   "features": [

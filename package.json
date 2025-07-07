@@ -9,7 +9,14 @@
     "serve": "npx http-server -p 8080 -c-1",
     "dev": "npx webpack --watch"
   },
-  "keywords": ["bbqr", "psbt", "qr", "bitcoin", "offline", "maker"],
+  "keywords": [
+    "bbqr",
+    "psbt",
+    "qr",
+    "bitcoin",
+    "offline",
+    "maker"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -22,7 +29,9 @@
     "assert": "^2.1.0",
     "babel-loader": "^10.0.0",
     "buffer": "^6.0.3",
+    "copy-webpack-plugin": "^13.0.0",
     "crypto-browserify": "^3.12.1",
+    "html-webpack-plugin": "^5.6.3",
     "http-server": "^14.1.1",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
