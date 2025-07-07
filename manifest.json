@@ -1,7 +1,7 @@
 {
-  "name": "BBQr Maker",
+  "name": "BBQr Maker - Secure Bitcoin PSBT to QR Converter",
   "short_name": "BBQr Maker",
-  "description": "Convert PSBT to multi-frame BBQr codes for offline signing",
+  "description": "Bridge tool for ColdCard Q and wallets without BBQr support. Enables compatibility between modern hardware wallets and older wallet software by converting PSBTs to animated BBQr codes.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#000000",
@@ -21,8 +21,36 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["utilities", "finance"],
-  "lang": "en",
+  "categories": ["utilities", "finance", "productivity"],
+  "lang": "en", 
   "scope": "./",
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "features": [
+    "Cross Platform",
+    "Offline",
+    "No Data Collection"
+  ],
+  "screenshots": [
+    {
+      "src": "icon/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "BBQr Maker main interface showing PSBT input and animated QR output"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Convert PSBT",
+      "short_name": "Convert", 
+      "description": "Bridge PSBT to BBQr for ColdCard Q compatibility with any wallet software",
+      "url": "./index.html",
+      "icons": [
+        {
+          "src": "icon/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
 } 

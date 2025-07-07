@@ -1,13 +1,70 @@
 <!DOCTYPE html>
+<!--
+  BBQr Maker - ColdCard Q & Wallet Compatibility Bridge Tool
+  
+  A specialized bridge tool designed to enable compatibility between ColdCard Q 
+  hardware wallets and wallet software that doesn't natively support the BBQr protocol.
+  This tool solves the integration gap, allowing users to benefit from modern hardware 
+  wallet security while continuing to use their preferred wallet software.
+  
+  Primary Purpose:
+  • Bridge ColdCard Q with non-BBQr supporting wallets (Bitcoin Core, Electrum, etc.)
+  • Enable older wallet software to work with modern hardware wallets
+  • Provide seamless PSBT → animated QR → hardware wallet workflow
+  
+  Key Features:
+  • Complete offline operation - no data transmission
+  • Support for large PSBT files with automatic optimization
+  • Animated QR code display for easy hardware wallet scanning
+  • ColdCard-inspired retro LCD interface design
+  • Progressive Web App (PWA) with offline caching
+  • Zero tracking or analytics
+  • Local font loading for true offline functionality
+  
+  Wallet Ecosystem Integration:
+  • Hardware: ColdCard Q, ColdCard Mk4, and BBQr-capable devices
+  • Bridge for: Bitcoin Core, Electrum, Blue Wallet, Green Wallet, etc.
+  • Native support: Sparrow Wallet, Specter Desktop, and modern tools
+  
+  Security: All PSBT processing happens locally in your browser.
+  Privacy: No data is ever sent to external servers.
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  
+  <!-- App Description -->
+  <meta name="description" content="Bridge tool for ColdCard Q and wallets without BBQr support. Convert Bitcoin PSBT to animated BBQr codes for secure offline transaction signing. Enables compatibility between modern hardware wallets and older wallet software.">
+  <meta name="keywords" content="Bitcoin, PSBT, BBQr, QR code, ColdCard Q, wallet compatibility, bridge tool, offline, secure, transaction, signing, cryptocurrency, blockchain, animated QR, hardware wallet">
+  <meta name="author" content="BBQr Maker">
+  <meta name="robots" content="index, follow">
+  
+  <!-- PWA Configuration -->
   <meta name="theme-color" content="#ffa600">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="BBQr Maker">
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BBQr Maker - ColdCard Q & Wallet Compatibility Bridge">
+  <meta property="og:description" content="Bridge tool enabling ColdCard Q compatibility with wallets that don't support BBQr. Convert PSBTs to animated QR codes for seamless hardware wallet integration.">
+  <meta property="og:image" content="./icon/icon-512.png">
+  <meta property="og:url" content="https://bbqr-maker.21baiwan.com">
+  <meta property="og:site_name" content="BBQr Maker">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BBQr Maker - ColdCard Q Wallet Bridge">
+  <meta name="twitter:description" content="Bridge tool for ColdCard Q and non-BBQr wallets. Enables compatibility by converting PSBTs to animated QR codes for secure hardware wallet signing.">
+  <meta name="twitter:image" content="./icon/icon-512.png">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="no-referrer">
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/x-icon" href="icon/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
@@ -15,10 +72,73 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icon/icon-192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="icon/icon-512.png">
-  <title>BBQr Maker</title>
+  <title>BBQr Maker - Secure Bitcoin PSBT to Animated QR Converter</title>
+  
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "BBQr Maker",
+    "alternateName": "BBQr PSBT Converter",
+    "description": "A compatibility bridge tool designed for ColdCard Q and wallets without BBQr support. Converts Bitcoin PSBTs to animated BBQr codes, enabling seamless integration between modern hardware wallets and older wallet software.",
+    "url": "",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web Browser",
+    "permissions": "offline",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Bridge compatibility between ColdCard Q and non-BBQr wallets",
+      "Convert PSBT to animated BBQr codes",
+      "Enable older wallet software to work with modern hardware wallets",
+      "Completely offline operation",
+      "No data transmission",
+      "Support for large PSBT files",
+      "Progressive Web App (PWA)",
+      "Hardware wallet compatible",
+      "Animated QR display for easy scanning",
+      "ColdCard inspired LCD interface",
+      "Seamless integration tool for wallet ecosystems"
+    ],
+    "screenshot": "./icon/icon-512.png",
+    "softwareVersion": "1.0",
+    "author": {
+      "@type": "Organization",
+      "name": "BBQr Maker"
+    },
+    "maintainer": {
+      "@type": "Organization", 
+      "name": "BBQr Maker"
+    },
+    "browserRequirements": "Requires JavaScript enabled",
+    "memoryRequirements": "Minimal",
+    "processorRequirements": "Any modern processor",
+    "storageRequirements": "< 1MB"
+  }
+  </script>
   <style>
     /* ColdCard Q LCD Display Simulation */
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+    
+    /* Local JetBrains Mono font */
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: url('./fonts/JetBrainsMono-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    
+    @font-face {
+      font-family: 'JetBrains Mono';
+      src: url('./fonts/JetBrainsMono-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
     
     * {
       box-sizing: border-box;
@@ -35,10 +155,8 @@
       line-height: 1.2;
       font-size: 15px;
       overflow-x: hidden;
-      overflow-y: hidden;
-      position: fixed;
+      overflow-y: auto;
       width: 100%;
-      height: 100%;
       top: 0;
       left: 0;
     }
@@ -259,12 +377,23 @@
       left: 15px;
       right: 15px;
       text-align: center;
-      font-size: 10px;
+      font-size: 9px;
       color: rgba(255, 166, 0, 0.4);
       letter-spacing: 0.5px;
       background: transparent;
       padding: 6px 0;
       z-index: 3;
+      line-height: 1.4;
+    }
+    
+    .footer-line {
+      margin: 1px 0;
+    }
+    
+    .footer-line:first-child {
+      color: rgba(255, 166, 0, 0.6);
+      font-weight: 700;
+      font-size: 10px;
     }
     
 
@@ -304,8 +433,13 @@
         bottom: 10px;
         left: 10px;
         right: 10px;
-        font-size: 9px;
+        font-size: 8px;
         padding: 5px 0;
+        line-height: 1.3;
+      }
+      
+      .footer-line:first-child {
+        font-size: 9px;
       }
       
       textarea {
@@ -365,13 +499,26 @@
     .hidden {
       display: none !important;
     }
+    
+    /* Screen reader only content */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 <body>
   <div class="device-frame">
     <div class="device-title">BBQr Maker</div>
     <div class="screen">
-      <div id="input-section" class="input-section">
+      <div id="input-section" class="input-section" role="main" aria-label="Bitcoin PSBT to BBQr converter">
         <label class="label" for="psbt-input">Paste PSBT (Base64)</label>
         <textarea 
           id="psbt-input" 
@@ -379,18 +526,85 @@
           autocorrect="off"
           autocapitalize="off"
           spellcheck="false"
+          placeholder="Paste your Bitcoin PSBT here (Base64 format)..."
+          aria-describedby="psbt-help"
+          aria-label="Bitcoin PSBT input field"
         ></textarea>
+        <div id="psbt-help" class="sr-only">Enter a Bitcoin Partially Signed Bitcoin Transaction in Base64 format to convert to animated BBQr codes for hardware wallet signing.</div>
         
-        <button id="generate-btn" class="button">Generate BBQr</button>
+        <button id="generate-btn" class="button" aria-describedby="button-help">Generate BBQr</button>
+        <div id="button-help" class="sr-only">Convert the entered PSBT to animated BBQr codes for scanning with hardware wallets</div>
         <div id="status" class="status"></div>
       </div>
       
       <div id="qr-container" class="qr-display"></div>
       
       <div class="footer">
-        OFFLINE • NO DATA SENT
+        <div class="footer-line">NO DATA SENT</div>
+        <div class="footer-line">INSTALL / ADD TO HOME SCREEN FOR OFFLINE USE</div>
       </div>
     </div>
+  </div>
+  
+  <!-- Hidden SEO Content -->
+  <div class="seo-content" style="position: absolute; left: -9999px; opacity: 0;">
+    <h1>BBQr Maker - ColdCard Q & Wallet Compatibility Bridge Tool</h1>
+    
+    <h2>Bridge Tool for Wallet Compatibility</h2>
+    <p>BBQr Maker serves as a crucial bridge between ColdCard Q hardware wallets and wallet software that doesn't natively support the BBQr protocol. This tool solves the compatibility gap, enabling users to benefit from modern hardware wallet security while continuing to use their preferred wallet software.</p>
+    
+    <h2>Primary Use Cases</h2>
+    <ul>
+      <li>Enable ColdCard Q integration with wallets lacking BBQr support</li>
+      <li>Bridge older wallet software with modern hardware wallet capabilities</li>
+      <li>Provide animated QR workflow for wallets with basic QR scanning</li>
+      <li>Facilitate secure air-gapped transaction signing across different wallet ecosystems</li>
+    </ul>
+    
+    <h2>Features and Capabilities</h2>
+    <ul>
+      <li>Convert Bitcoin Partially Signed Bitcoin Transactions (PSBT) to animated BBQr codes</li>
+      <li>Bridge compatibility between ColdCard Q and non-BBQr supporting wallets</li>
+      <li>Enable wallet software ecosystem integration without native BBQr support</li>
+      <li>Completely offline operation - no internet connection required after initial load</li>
+      <li>Zero data transmission - all processing happens locally in your browser</li>
+      <li>Support for large PSBT files with automatic frame optimization</li>
+      <li>Hardware wallet compatible QR codes for secure transaction signing</li>
+      <li>ColdCard inspired retro LCD interface design</li>
+      <li>Progressive Web App (PWA) - install for offline use</li>
+      <li>Animated QR display with adjustable timing for easy scanning</li>
+      <li>Advanced BBQr protocol implementation with multi-frame support</li>
+      <li>Automatic fallback strategies for complex transactions</li>
+    </ul>
+    
+    <h2>Security and Privacy</h2>
+    <p>BBQr Maker prioritizes your security and privacy:</p>
+    <ul>
+      <li>No data is ever sent to external servers</li>
+      <li>All PSBT processing happens locally in your browser</li>
+      <li>No tracking or analytics</li>
+      <li>Open source and transparent</li>
+      <li>Works completely offline once installed</li>
+    </ul>
+    
+    <h2>How to Use</h2>
+    <ol>
+      <li>Paste your Bitcoin PSBT (Base64 format) into the text area</li>
+      <li>Click "Generate BBQr" to create animated QR codes</li>
+      <li>Use your hardware wallet or compatible software to scan the animated QR sequence</li>
+      <li>Complete your Bitcoin transaction signing securely offline</li>
+    </ol>
+    
+    <h2>Wallet Compatibility & Integration</h2>
+    <p>BBQr Maker specifically bridges the gap between:</p>
+    <ul>
+      <li><strong>Hardware Wallets:</strong> ColdCard Q, ColdCard Mk4, and other BBQr-capable devices</li>
+      <li><strong>Wallet Software requiring BBQr bridge:</strong> Bitcoin Core, Electrum (older versions), Blue Wallet, Green Wallet, and other wallets without native BBQr support</li>
+      <li><strong>Native BBQr Wallets:</strong> Sparrow Wallet, Specter Desktop, and other modern Bitcoin security tools</li>
+    </ul>
+    
+    <h2>Workflow Integration</h2>
+    <p>Typical usage scenario: Your wallet software creates a PSBT → BBQr Maker converts it to animated QR → ColdCard Q scans and signs → Return signed transaction to your wallet software.</p>
   </div>
 
   <script src="dist/bbqr-maker.bundle.js"></script>

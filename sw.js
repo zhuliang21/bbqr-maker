@@ -1,11 +1,13 @@
-const CACHE_NAME = 'bbqr-maker-v1';
+const CACHE_NAME = 'bbqr-maker-v3';
 const urlsToCache = [
   './',
   './index.html',
   './dist/bbqr-maker.bundle.js',
   './manifest.json',
   './icon/icon-192.png',
-  './icon/icon-512.png'
+  './icon/icon-512.png',
+  './fonts/JetBrainsMono-Regular.woff2',
+  './fonts/JetBrainsMono-Bold.woff2'
 ];
 
 self.addEventListener('install', function(event) {
