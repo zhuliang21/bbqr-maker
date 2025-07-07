@@ -44,13 +44,29 @@ jobs:
       - name: Build project
         run: npm run build
         
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p _deploy
+          # Copy static files
+          cp index.html _deploy/
+          cp manifest.json _deploy/
+          cp sw.js _deploy/
+          cp CNAME _deploy/ 2>/dev/null || true
+          # Copy directories
+          cp -r icon _deploy/
+          cp -r fonts _deploy/ 2>/dev/null || true
+          # Copy built files
+          cp -r dist _deploy/
+        
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload the deployment directory
+          path: '_deploy'
+          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
